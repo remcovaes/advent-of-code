@@ -16,8 +16,7 @@ XXAMMXXAMA
 SMSMSASXSS
 SAXAMASAAA
 MAMMMXMMMM
-MXMXAXMASX
-`
+MXMXAXMASX`
 
 	result := TotalResultA(input)
 	assert.Equal(t, 18, result)
@@ -49,8 +48,7 @@ XXAMMXXAMA
 SMSMSASXSS
 SAXAMASAAA
 MAMMMXMMMM
-MXMXAXMASX
-`
+MXMXAXMASX`
 	result := GetLeftToRight(input)
 	assert.Equal(t, 3, result)
 }
@@ -65,8 +63,7 @@ XXAMMXXAMA
 SMSMSASXSS
 SAXAMASAAA
 MAMMMXMMMM
-MXMXAXMASX
-`
+MXMXAXMASX`
 	result := GetRightToLeft(input)
 	assert.Equal(t, 2, result)
 }
@@ -81,8 +78,7 @@ XXAMMXXAMA
 SMSMSASXSS
 SAXAMASAAA
 MAMMMXMMMM
-MXMXAXMASX
-`
+MXMXAXMASX`
 	result := GetVertical(input)
 	assert.Equal(t, 3, result)
 }
@@ -97,8 +93,7 @@ XXAMMXXAMA
 SMSMSASXSS
 XAXAMASAAA
 MAMMMXMMMM
-AXMXAXMASX
-`
+AXMXAXMASX`
 	result := GetVertical(input)
 	assert.Equal(t, 3, result)
 }
@@ -113,8 +108,7 @@ XXAMMXXAMA
 SMSMSASXSS
 SAXAMASAAA
 MAMMMXMMMM
-MXMXAXMASX
-`
+MXMXAXMASX`
 	result := GetDiagonal(input)
 	assert.Equal(t, 4, result)
 }
@@ -133,8 +127,7 @@ func TestHelper6(t *testing.T) {
 		`ASAAA
 AAAAA
 AAAMA
-AAAAX
-`
+AAAAX`
 	result := GetDiagonal(input)
 	assert.Equal(t, 1, result)
 }
@@ -143,8 +136,7 @@ func TestHelper7(t *testing.T) {
 		`AAASA
 AAAAA
 AMAAA
-XAAAA
-`
+XAAAA`
 	result := GetDiagonal(input)
 	assert.Equal(t, 1, result)
 }
@@ -154,8 +146,7 @@ func TestHelper8(t *testing.T) {
 AAAAX
 AAAMA
 AAAAA
-ASAAA
-`
+ASAAA`
 	result := GetDiagonal(input)
 	assert.Equal(t, 1, result)
 }
@@ -165,8 +156,7 @@ func TestHelper9(t *testing.T) {
 XAAAA
 AMAAA
 AAAAA
-AAASA
-`
+AAASA`
 	result := GetDiagonal(input)
 	assert.Equal(t, 1, result)
 }

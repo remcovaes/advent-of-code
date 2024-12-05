@@ -18,8 +18,8 @@ func TotalResultA(strraw string) int {
 
 func TotalResultB(strraw string) int {
 	str := strings.Trim(strraw, "\n")
-
-	return Part2(str)
+	diag := Part2(str)
+	return diag
 }
 
 func GetLeftToRight(input string) int {
@@ -57,42 +57,43 @@ func GetDiagonalTopLeft(input string) int {
 	total := 0
 	xlen := len(splitted[0])
 	ylen := len(splitted)
-	for y := range splitted[0] {
-		for x := range splitted {
-			if string(splitted[x][y]) != "A" {
+	for y := range splitted {
+		for x := range splitted[0] {
+			check := string(splitted[y][x])
+			if check != "X" {
 				continue
 			}
-			if x >= 3 && y >= 3 {
-				letter1 := string(splitted[x-3][y-3])
-				letter2 := string(splitted[x-2][y-2])
-				letter3 := string(splitted[x-1][y-1])
+			if y >= 3 && x >= 3 {
+				letter1 := string(splitted[y-3][x-3])
+				letter2 := string(splitted[y-2][x-2])
+				letter3 := string(splitted[y-1][x-1])
 				word := letter3 + letter2 + letter1
 				if word == "MAS" {
 					total++
 				}
 			}
-			if (xlen-x-1) >= 3 && (ylen-y-1) >= 3 {
-				letter1 := string(splitted[x+3][y+3])
-				letter2 := string(splitted[x+2][y+2])
-				letter3 := string(splitted[x+1][y+1])
+			if (xlen-y-1) >= 3 && (ylen-x-1) >= 3 {
+				letter1 := string(splitted[y+3][x+3])
+				letter2 := string(splitted[y+2][x+2])
+				letter3 := string(splitted[y+1][x+1])
 				word := letter3 + letter2 + letter1
 				if word == "MAS" {
 					total++
 				}
 			}
-			if (xlen-x-1) >= 3 && y >= 3 {
-				letter1 := string(splitted[x+3][y-3])
-				letter2 := string(splitted[x+2][y-2])
-				letter3 := string(splitted[x+1][y-1])
+			if (xlen-y-1) >= 3 && x >= 3 {
+				letter1 := string(splitted[y+3][x-3])
+				letter2 := string(splitted[y+2][x-2])
+				letter3 := string(splitted[y+1][x-1])
 				word := letter3 + letter2 + letter1
 				if word == "MAS" {
 					total++
 				}
 			}
-			if x >= 3 && (ylen-y-1) >= 3 {
-				letter1 := string(splitted[x-3][y+3])
-				letter2 := string(splitted[x-2][y+2])
-				letter3 := string(splitted[x-1][y+1])
+			if y >= 3 && (ylen-x-1) >= 3 {
+				letter1 := string(splitted[y-3][x+3])
+				letter2 := string(splitted[y-2][x+2])
+				letter3 := string(splitted[y-1][x+1])
 				word := letter3 + letter2 + letter1
 				if word == "MAS" {
 					total++
