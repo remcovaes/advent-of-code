@@ -5,11 +5,6 @@ import (
 	"strings"
 )
 
-type coordinate struct {
-	x int
-	y int
-}
-
 func TotalResultA(str string) int {
 	return 0
 }

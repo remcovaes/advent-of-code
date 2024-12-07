@@ -1,20 +1,31 @@
 package main
 
 import (
-	"testing"
-
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
-func TestTotalA(t *testing.T) {
+func TestExampleA(t *testing.T) {
 	input := ``
 	result := TotalResultA(input)
 	assert.Equal(t, 0, result)
 }
 
-func TestTotalB(t *testing.T) {
+func TestExampleB(t *testing.T) {
 	input := ``
 
+	result := TotalResultB(input)
+	assert.Equal(t, 0, result)
+}
+
+func TestFullA(t *testing.T) {
+	input := GetDataDay()
+	result := TotalResultA(input)
+	assert.Equal(t, 0, result)
+}
+
+func TestFullB(t *testing.T) {
+	input := GetDataDay()
 	result := TotalResultB(input)
 	assert.Equal(t, 0, result)
 }
