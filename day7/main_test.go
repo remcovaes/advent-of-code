@@ -19,6 +19,27 @@ func TestTotalA(t *testing.T) {
 	assert.Equal(t, 3749, result)
 }
 
+func TestFullInput(t *testing.T) {
+	input := GetDataDay()
+	result := TotalResultA(input)
+	assert.Equal(t, 1298103531759, result)
+}
+func BenchmarkTotalA(b *testing.B) {
+	input := GetDataDay()
+
+	for range b.N {
+		TotalResultA(input)
+	}
+}
+
+func BenchmarkTotalB(b *testing.B) {
+	input := GetDataDay()
+
+	for range b.N {
+		TotalResultB(input)
+	}
+}
+
 func TestTotalB(t *testing.T) {
 	input := ``
 

@@ -90,30 +90,23 @@ func OperationsForLenB(num int) [][]string {
 
 	previous := OperationsForLenB(num - 1)
 	for _, item := range previous {
-		newArr := make([]string, len(item))
+		newArr := make([]string, len(item), len(item)+1)
 		copy(newArr, item)
 		newItem := append(newArr, "+")
 		total = append(total, newItem)
 	}
 	for _, item := range previous {
-		newArr := make([]string, len(item))
+		newArr := make([]string, len(item), len(item)+1)
 		copy(newArr, item)
 		newItem2 := append(newArr, "*")
 		total = append(total, newItem2)
 	}
 	for _, item := range previous {
-		newArr := make([]string, len(item))
+		newArr := make([]string, len(item), len(item)+1)
 		copy(newArr, item)
 		newItem2 := append(newArr, "|")
 		total = append(total, newItem2)
 	}
-	slices.SortFunc(total, func(a []string, b []string) int {
-		if strings.Join(a, "") > strings.Join(b, "") {
-			return 1
-		}
-
-		return -1
-	})
 	return total
 }
 func OperationsForLen(num int) [][]string {
@@ -185,6 +178,9 @@ func IsMul(nums Line) bool {
 			if operator == "+" {
 				total = total + num2
 			}
+		}
+		if total > nums.total {
+			continue
 		}
 		if total == nums.total {
 			return true
