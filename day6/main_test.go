@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestTotalA(t *testing.T) {
+func TestExmpleInputPart1(t *testing.T) {
 	input := `....#.....
 .........#
 ..........
@@ -21,7 +21,7 @@ func TestTotalA(t *testing.T) {
 	assert.Equal(t, 41, result)
 }
 
-func TestTotalB(t *testing.T) {
+func TestExmpleInputPart2(t *testing.T) {
 	input := `....#.....
 .........#
 ..........
@@ -35,4 +35,16 @@ func TestTotalB(t *testing.T) {
 
 	result := TotalResultB(input)
 	assert.Equal(t, 6, result)
+}
+
+func TestDayInputPart1(t *testing.T) {
+	input := GetDataDay()
+	result := TotalResultA(input)
+	assert.Equal(t, 5534, result)
+}
+
+func TestDayInputPart2(t *testing.T) {
+	input := GetDataDay()
+	result := TotalResultB(input)
+	assert.Equal(t, 2262, result)
 }

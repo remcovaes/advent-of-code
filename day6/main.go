@@ -111,23 +111,22 @@ func GetNextPos(lines [][]string, current coordinate, direction string) (coordin
 	if lines[current.y][current.x] == "#" {
 		if direction == "up" {
 			current.y++
-			x := coordinate{current.x, current.y}
-			return x, "right", false
+			return current, "right", false
 		}
 		if direction == "down" {
 			current.y--
-			return coordinate{current.x, current.y}, "left", false
+			return current, "left", false
 		}
 		if direction == "right" {
 			current.x--
-			return coordinate{current.x, current.y}, "down", false
+			return current, "down", false
 		}
 		if direction == "left" {
 			current.x++
-			return coordinate{current.x, current.y}, "up", false
+			return current, "up", false
 		}
 	}
-	return coordinate{current.x, current.y}, direction, false
+	return current, direction, false
 }
 
 func HasLoop(lines [][]string, coordToCheck coordinate, start coordinate, direction string) bool {
