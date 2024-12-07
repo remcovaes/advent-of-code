@@ -71,9 +71,7 @@ func HandleLines(lines []Line) int {
 
 func HandleLinesB(lines []Line) int {
 	total := 0
-	for i, line := range lines {
-
-		println(i)
+	for _, line := range lines {
 		if IsMulB(line) {
 			total += line.total
 		}

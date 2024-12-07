@@ -1,10 +1,8 @@
 package main
 
 import (
-	"fmt"
-	"testing"
-
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestTotalA(t *testing.T) {
@@ -89,12 +87,4 @@ func TestCase1(t *testing.T) {
 	string := "654381: 11 6 16 20 40 5 7 8 4 9 8"
 	line := ParseLine(string)
 	assert.Equal(t, true, IsMul(line))
-}
-
-func Test5(t *testing.T) {
-	line := OperationsForLen(4)
-	for _, i := range line {
-		fmt.Printf("%v\n", i)
-	}
-	assert.Equal(t, true, line)
 }
