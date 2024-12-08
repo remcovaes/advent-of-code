@@ -5,6 +5,13 @@ import (
 	"testing"
 )
 
+func TestInput(t *testing.T) {
+	input := ``
+	result := parseInput(input)
+
+	assert.Equal(t, 0, result)
+}
+
 func TestExampleA(t *testing.T) {
 	input := ``
 	result := TotalResultA(input)
@@ -30,23 +37,30 @@ func TestFullB(t *testing.T) {
 	assert.Equal(t, 0, result)
 }
 
-func TestHelper1(t *testing.T) {
-	input := ``
+func TestHelperPart1(t *testing.T) {
+	input := PuzzleInput{}
 
-	result := Helper1(input)
+	result := HelperPart1(input)
 	assert.Equal(t, 0, result)
 }
 
-func TestHelper2(t *testing.T) {
-	input := ``
+func TestHelperSingelPart1(t *testing.T) {
+	input := SinlgeInput{}
 
-	result := Helper1(input)
+	result := HelperSinglePart1(input)
 	assert.Equal(t, 0, result)
 }
 
-func TestHelper3(t *testing.T) {
-	input := ``
+func TestHelperPart2(t *testing.T) {
+	input := PuzzleInput{}
 
-	result := Helper1(input)
+	result := HelperPart1(input)
+	assert.Equal(t, 0, result)
+}
+
+func TestHelperSingelPart2(t *testing.T) {
+	input := SinlgeInput{}
+
+	result := HelperSinglePart2(input)
 	assert.Equal(t, 0, result)
 }
