@@ -13,6 +13,7 @@ type SingleInput struct {
 	size      int
 	filled    int
 	filleable bool
+	origSize  int
 }
 
 type PuzzleInput struct {
@@ -35,6 +36,7 @@ func parseInput(str string) PuzzleInput {
 		singleInput.position = position
 		singleInput.free = freeSpaceCurrent
 		singleInput.size = fileSize
+		singleInput.origSize = fileSize
 		singleInput.filleable = true
 
 		input.lines = append(input.lines, singleInput)
@@ -106,68 +108,52 @@ func HelperSinglePart1(line SingleInput) int {
 }
 
 func HelperPart2(input PuzzleInput) int {
+	xinput := input.lines
 	total := 0
+	for itemIndex := range xinput {
+		item := xinput[itemIndex]
+		spaceLeft := item.free - item.filled
+		if spaceLeft > 0 {
+			// try to find a filler
+			for index := range xinput {
+				lastIndex := len(xinput) - 1 - index
+				last := xinput[lastIndex]
+				if itemIndex >= lastIndex {
+					break
+				}
+				if last.size == 0 {
+					continue
+				}
+				if last.size > spaceLeft {
+					continue
+				}
 
-	lines := input.lines
-	for index := range len(lines) {
+				for i := range last.size {
+					position := item.position + item.origSize + item.filled + i
+					id := last.id
+					add := position * id
 
-		reversedIndex := len(input.lines) - 1
-		nextIndex := 0
-		for {
-			if nextIndex > reversedIndex {
-				break
+					total = total + add
+				}
+				item.filled = item.filled + xinput[lastIndex].size
+				xinput[lastIndex].size = 0
+				spaceLeft = item.free - item.filled
+				if spaceLeft == 0 {
+					break
+				}
 			}
-			next := input.lines[nextIndex]
-			last := input.lines[reversedIndex]
-			if last.size == 0 {
-				reversedIndex--
-				continue
-			}
-
-			if nextIndex >= reversedIndex {
-				input.lines[reversedIndex].filleable = false
-				reversedIndex--
-				continue
-			}
-			if input.lines[reversedIndex].size == 0 || !last.filleable {
-				reversedIndex--
-				continue
-			}
-			if next.position > last.position {
-				break
-			}
-			if input.lines[reversedIndex].size > next.free {
-				nextIndex++
-				continue
-			}
-
-			for i := range input.lines[reversedIndex].size {
-				id := input.lines[reversedIndex].id
-				pos := i + next.position + next.size + next.filled
-				total += id * pos
-			}
-
-			input.lines[nextIndex].free = next.free - last.size
-			input.lines[nextIndex].filled += last.size
-
-			input.lines[reversedIndex].size = 0
 		}
-		if input.lines[index].free < 0 {
-			panic("can not happen")
-		}
-		if input.lines[index].size < 0 {
-			panic("can not happen")
+		xinput[itemIndex] = item
+	}
+	for _, item := range xinput {
+		for i := range item.size {
+			position := item.position + i
+			id := item.id
+			add := position * id
+			total = total + add
 		}
 	}
 
-	for index := range len(lines) {
-		currentLine := input.lines[index]
-		for i := range currentLine.size {
-			xid := input.lines[index].id
-			post := input.lines[index].position + i
-			total += xid * post
-		}
-	}
 	return total
 }
 

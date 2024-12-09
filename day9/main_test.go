@@ -43,6 +43,18 @@ func TestExampleB(t *testing.T) {
 	assert.Equal(t, 2858, result)
 }
 
+func TestExampleB8(t *testing.T) {
+	input := `0255`
+	result := TotalResultB(input)
+	assert.Equal(t, 20, result)
+}
+
+func TestExampleB9(t *testing.T) {
+	input := `0402020202021010`
+	result := TotalResultB(input)
+	assert.Equal(t, 20, result)
+}
+
 func TestFullA(t *testing.T) {
 	input := GetDataDay()
 	result := TotalResultA(input)
@@ -60,9 +72,12 @@ func TestFullA(t *testing.T) {
 func TestFullB(t *testing.T) {
 	input := GetDataDay()
 	result := TotalResultB(input)
-	assert.Less(t, 7886024298205, result)
-	assert.Less(t, 7885488892615, result)
+	assert.Greater(t, 7886024298205, result)
+	assert.Greater(t, 7885488892615, result)
 	assert.NotEqual(t, 10126771850879, result)
+	assert.NotEqual(t, 8439434080946, result)
+	assert.NotEqual(t, 6352282411068, result)
+	assert.Equal(t, 0, result)
 
 }
 
