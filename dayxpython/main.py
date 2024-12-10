@@ -27,11 +27,13 @@ def parse_input(s: str) -> MainInput:
     return main
 
 def process_single1(single: SingleInput) -> int:
-    return 0
+    total = 0
+    return total
 
 
 def process_single2(single: SingleInput) -> int:
-    return 0
+    total = 0
+    return total
 
 def solve_total_1():
     file = read_file()
@@ -46,11 +48,11 @@ def solver_part1(s: str):
     total = 0
     for i in input.lines:
         total+=process_single1(i)
-    return 0
+    return total
 
 def solver_part2(s: str):
     input = parse_input(s)
     total = 0
     for i in input.lines:
         total+=process_single2(i)
-    return 0
+    return total
