@@ -1,5 +1,17 @@
 
-from typing import List
+from typing import List, Tuple
+
+type Coor = Tuple[int, int]
+
+def up(s: Coor):
+    return (s[0]-1, s[1])
+def down(s: Coor):
+    return (s[0]+1, s[1])
+def left(s: Coor):
+    return (s[0], s[1]-1)
+def right(s: Coor):
+    return (s[0], s[1]+1)
+
 
 
 def read_file():
