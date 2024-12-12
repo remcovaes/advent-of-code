@@ -1,4 +1,4 @@
-
+from functools import lru_cache 
 from typing import List
 
 
@@ -30,35 +30,28 @@ def parse_input(s: str) -> MainInput:
 
 cache = {}
 
-def process_single1(single: int) -> int:
-    c = cache.get(single)
-    if c != None:
-        print('cache hit')
-        return c
-
-    print('cache miss', cache)
-    currentList = [single]
-    for i in range(25):
-        print(i)
-        temp: List[int] = []
-        for j in range(len(currentList)):
-            num = currentList[j]
-            if num == 0:
-                temp.append(1)
-                continue
-            s = str(num)
-            if len(s) % 2 == 0:
-                slice = int(len(s) / 2) 
-                strnum =s[:slice] 
-                temp.append(int(strnum))
-                temp.append(int(s[(slice):]))
-            else:
-                temp.append(num * 2024)
-        currentList = temp
-
-    cache[single] = len(currentList)        
-    return len(currentList)
-
+@lru_cache(maxsize=12800)
+def process_single1(single) -> int:
+    if single[1] == 0:
+        return 1
+    current = single
+    todo = []
+    total = 1
+    while current[1] > 0:
+        if current[0] == 0:
+            current = (1, current[1] - 1)
+            continue
+        s = str(current[0])
+        if len(s) % 2 == 0:
+            slice = int(len(s) / 2) 
+            strnum =s[:slice] 
+            current = (int(strnum), current[1] -1)
+            todo.append((int(s[(slice):]), current[1]))
+        else:
+            current = (current[0] * 2024, current[1] -1)
+    for i in todo:
+        total = total + process_single1(i)
+    return total
 
 def process_single2(single: SingleInput) -> int:
     total = 0
@@ -76,14 +69,14 @@ def solver_part1(s: str):
     input = parse_input(s)
     total = 0
     for i in input.lines:
-        total+=process_single1(i)
+        total+=process_single1((i, 75))
     return total
 
 def solver_part2(s: str):
     input = parse_input(s)
     total = 0
     for i in input.lines:
-        total+=process_single2(i)
+        total+=process_single2(i, 5)
     return total
 
-print("result: ", solve_total_1())
+#print("result: ", solve_total_1())
