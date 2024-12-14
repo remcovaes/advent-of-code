@@ -1,7 +1,6 @@
-
 from typing import List, Tuple
 
-type Coor = Tuple[int, int]
+Coor = Tuple[int, int]
 
 def up(s: Coor):
     return (s[0]-1, s[1])
@@ -22,7 +21,7 @@ class SingleInput:
     single: str
 
 class MainInput:
-    lines: List[SingleInput] = []
+    lines: List[SingleInput]
 
 def parse_single(single: str) -> SingleInput:
     single_input = SingleInput()
@@ -34,6 +33,7 @@ def parse_single(single: str) -> SingleInput:
 
 def parse_input(s: str) -> MainInput:
     main = MainInput()
+    main.lines = []
     for line in s.split("\n"):
         main.lines.append(parse_single(line))
     return main
