@@ -1,23 +1,30 @@
 from main import solve_total_1, solve_total_2, solver_part1, solver_part2, Coor, expand_once
 
 def test_total_1():
-    result = solve_total_1()
+    result = solve_total_1(25)
     assert result < 1923319447377845
     assert result != 299477992525726
     assert result != 751150578280014
     assert result != 127223151517798
     assert result != 307387965392383
     assert result != 124727638943851
+    assert result != 299308553583764
+    assert result != 298563881700872
     assert result == 0
 
+def test_total_p1():
+    result = solve_total_1(2)
+    assert result == 206798
+    #assert False
+    #
 def test_example_12():
     input = """029A
 980A
 179A
 456A
 379A"""
-    result = solver_part1(input)
-    assert result == 0
+    result = solver_part1(input, 2)
+    assert result == 126384
 
 def test_example_1():
     input = """480A
