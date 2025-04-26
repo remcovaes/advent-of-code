@@ -11,13 +11,15 @@ class FullInput:
 def parse_line(string: str) -> SingleInput:
     return SingleInput(raw=string)
 
+def parse_input_full(string: str) -> FullInput:
+    full = FullInput(single=[])
+    for line in string.split("\n"):
+        full.single.append(parse_line(line))
+    return full
 
 def read_input() -> FullInput:
-    full = FullInput(single=[])
     with open("advent/input", encoding="utf-8") as file:
-        for line in file.readlines():
-            full.single.append(parse_line(line))
-    return full
+        return parse_input_full(file.read())
 
 
 def solve_part_one(full_input: FullInput):
